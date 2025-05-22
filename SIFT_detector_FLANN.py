@@ -108,8 +108,8 @@ if __name__ == "__main__":
     max_features = 100
     
     # Path to the images
-    image_path1 = "image3.png"
-    image_path2 = "image4.png"
+    image_path1 = "image9.png"
+    image_path2 = "image10.png"
     
     # Match SIFT features between the two images
     match_sift_features(image_path1, image_path2, max_features)
