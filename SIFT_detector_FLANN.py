@@ -27,9 +27,6 @@ def match_sift_features(image_path1, image_path2, max_features):
     
     print(f"Number of keypoints in image1: {len(keypoints1)}")
     print(f"Number of keypoints in image2: {len(keypoints2)}")
-    
-############################ try out FLANN matching instead of BFMatcher ############################
-############################ try out SURF, ORB and FAST instead of SIFT ############################
 
     # Create a BFMatcher (Brute Force Matcher) object
     bf = cv2.BFMatcher()
