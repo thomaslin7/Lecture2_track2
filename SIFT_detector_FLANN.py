@@ -35,8 +35,17 @@ def match_sift_features(image_path1, image_path2, max_features):
     # meaning how different / similar the two descriptors are
 
     # Match descriptors
-    matches = bf.knnMatch(descriptors1, descriptors2, k=2)  # k = 2 means we get the two best matches for each descriptor
+    # matches = bf.knnMatch(descriptors1, descriptors2, k=2)  # k = 2 means we get the two best matches for each descriptor
     # This is used later to compare the Euclidean distances of the two best matches
+
+    # FLANN parameters and matcher
+    FLANN_INDEX_KDTREE = 1
+    index_params = dict(algorithm=FLANN_INDEX_KDTREE, trees=5) # 5 KD trees
+    search_params = dict(checks=50) # do 50 checks on leaf nodes of the KD trees
+    flann = cv2.FlannBasedMatcher(index_params, search_params)  # insert parameters into the FLANN matcher
+
+    # Match descriptors using FLANN
+    matches = flann.knnMatch(descriptors1, descriptors2, k=2)
     
     # Apply ratio test to get good matches
     good_matches = []
@@ -96,7 +105,7 @@ def match_sift_features(image_path1, image_path2, max_features):
 
 if __name__ == "__main__":
     # Number of features to detect
-    max_features = 50
+    max_features = 100
     
     # Path to the images
     image_path1 = "image3.png"

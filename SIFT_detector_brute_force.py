@@ -99,7 +99,7 @@ def match_sift_features(image_path1, image_path2, max_features):
 
 if __name__ == "__main__":
     # Number of features to detect
-    max_features = 50
+    max_features = 100
     
     # Path to the images
     image_path1 = "image3.png"
